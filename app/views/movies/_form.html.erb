@@ -1,0 +1,74 @@
+</br>
+</br>
+</br>
+<%= form_with model: @movie, class: 'form-horizontal' do |f| %>
+	<%= f.hidden_field :authenticity_token, value: form_authenticity_token -%>
+    <%= render 'errors', object: @movie %>
+    <div class="form-group">
+      <%= f.label 'Nome do Filme', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= @movie.errors[:name].join(", ") if @movie.errors[:name].any? %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label 'Ano de lançamento', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_field :release_year, class: 'form-control' %>
+      <%= @movie.errors[:release_year].join(", ") if @movie.errors[:release_year].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Sinopse', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_area :synopsis, class: 'form-control' %>
+      <%= @movie.errors[:synopsis].join(", ") if @movie.errors[:synopsis].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'País de origem', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.text_field :country_of_origin, class: 'form-control' %>
+      <%= @movie.errors[:country_of_origin].join(", ") if @movie.errors[:country_of_origin].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Duração', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.number_field :duration, class: 'form-control' %>
+      <%= @movie.errors[:duration].join(", ") if @movie.errors[:duration].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Gênero', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, class: 'form-control' %>
+      <%= @movie.errors[:genre_id].join(", ") if @movie.errors[:genre_id].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Diretor', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.collection_select :director_id, Director.all, :id, :name, class: 'form-control' %>
+      <%= @movie.errors[:director_id].join(", ") if @movie.errors[:director_id].any? %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label 'Imagem', class: 'col-sm-2 control-label' %>
+      <div class="col-sm-10">
+      <%= f.file_field :image, class: 'form-control' %>
+      <%= @movie.errors[:image].join(", ") if @movie.errors[:image].any? %>
+      </div>
+    </div>
+    <%= f.submit 'Salvar', class: 'btn btn-secondary' %>
+  <% end %>
+  
+
+  

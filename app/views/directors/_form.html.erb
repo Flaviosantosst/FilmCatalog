@@ -1,0 +1,39 @@
+</br>
+</br>
+</br>
+<%= form_with model: @director, class: 'form-horizontal' do |f| %>
+	<%= render 'errors', object: @director %>
+	<div class="form-group">
+	  <%= f.label 'Nome do diretor', class: 'col-sm-2 control-label' %>
+	  <div class="col-sm-10">
+		<%= f.text_field :name, class: 'form-control' %>
+		<%= @director.errors[:name].join(", ") if @director.errors[:name].any? %>
+	  </div>
+	</div>
+  
+	<div class="form-group">
+	  <%= f.label 'Nacionalidade', class: 'col-sm-2 control-label' %>
+	  <div class="col-sm-10">
+		<%= f.text_field :nationality, class: 'form-control' %>
+		<%= @director.errors[:nationality].join(", ") if @director.errors[:nationality].any? %>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <%= f.label 'Data de nascimento', class: 'col-sm-2 control-label' %>
+	  <div class="col-sm-10">
+		<%= f.text_field :date_of_birth, class: 'form-control' %>
+		<%= @director.errors[:date_of_birth].join(", ") if @director.errors[:date_of_birth].any? %>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <%= f.label 'Gênero favorito', class: 'col-sm-2 control-label' %>
+	  <div class="col-sm-10">
+		<%= f.text_field :favorite_genre, class: 'form-control' %>
+		<%= @director.errors[:favorite_genre].join(", ") if @director.errors[:favorite_genre].any? %>
+	  </div>
+	</div>
+
+	<%= f.submit 'Salvar', class: 'btn btn-secondary' %>
+  <% end %>

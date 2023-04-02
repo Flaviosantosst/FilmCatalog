@@ -1,0 +1,63 @@
+<% if flash[:notice] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+          </br>
+          </br>
+          </br>
+		  	<h1>Filmes</h1>
+          </div>
+        </div>
+      </div>
+  </div>
+  <%= button_to "Voltar", root_path, method: :get, class: "btn btn-secondary" %>
+
+  <div class="bs-component">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../movies?released=true">Filmes Lançados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../movies?released=false">Filmes não Lançados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../movies">Todos os Filmes</a>
+            </li>
+          </ul>
+        </div>
+        <%= form_with(url: movies_path, method: :get) do |form| %>
+          <%= form.label :search, "Pesquisar por título:" %>
+          <%= form.text_field :search %>
+          <%= form.submit "Pesquisar" %>
+        <% end %>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <% if movie.image.present? %>
+        <div class="col-md-4">
+          <%= image_tag movie.image %>
+          <div class="movie-info">
+            <h5><%= link_to movie.name, movie %></h5>
+            <p><%= link_to movie.release_year, movie %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

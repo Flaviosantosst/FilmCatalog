@@ -1,0 +1,32 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+          </br>
+          </br>
+          </br>
+		  	<h1>Filmes do Gênero - <%= @genre.name %></h1>
+          </div>
+        </div>
+      </div>
+  </div>
+  <%= button_to "Voltar", genres_path, method: :get, class: "btn btn-secondary" %>
+
+<dl>
+	<dd>
+  	<strong>Gênero:</strong> <%= @genre.name %><br/>
+	</dd>
+
+	<dd>
+  	<% @genre.movies.each do |movie| %>
+			<li> <%= movie.name %><br/> </li>
+	  <% end %>	  
+	</dd>
+</dl>
+
+<%= button_to 'Editar', edit_genre_path(@genre), method: :get %>

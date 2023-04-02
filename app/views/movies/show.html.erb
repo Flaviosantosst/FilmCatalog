@@ -1,0 +1,73 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+          </br>
+          </br>
+          </br>
+		  	<h1>Informações sobre o filme: <%= @movie.name %></h1>
+          </div>
+        </div>
+      </div>
+</div>
+<%= button_to "Voltar", movies_path, method: :get, class: "btn btn-secondary" %>
+<div class="container">
+  <div class="row">
+		<div class="col-md-4">
+
+		<% if @movie.image.present? %>
+  		<%= image_tag @movie.image %>
+		<% end %>
+			<dl>
+				<dd>
+					<strong>Título:</strong> <%= @movie.name %><br/>
+				</dd>
+			
+				<dd>
+					<strong>Ano de lançamento:</strong> <%= @movie.release_year %><br/>
+				</dd>
+			
+				<dd>
+					<strong>sinopse:</strong> <%= @movie.synopsis %><br/>
+				</dd>
+			
+				<dd>
+					<strong>País de origem:</strong> <%= @movie.country_of_origin %><br/>
+				</dd>
+			
+				<dd>
+					<strong>Duração:</strong> <%= @movie.duration %><br/>
+				</dd>
+			
+				<dd>
+					<strong>Gênero:</strong> <%= @movie.genre.name %><br/>
+				</dd>
+			
+				<dd>
+					<strong>Diretor:</strong> <%= @movie.director.name %><br/>
+				</dd>
+			
+				<dd>
+					<strong>Status:</strong> <%= @movie.status %><br/>
+				</dd>
+			</dl>
+				<div class="btn-group">
+					<%= button_to 'Publicar', publish_movie_path(@movie), method: :patch, class: 'btn btn-secondary d-inline-block' %>
+					<%= button_to 'Rascunho', unpublish_movie_path(@movie), method: :patch, class: 'btn btn-secondary d-inline-block' %>
+					<%= button_to 'Editar', edit_movie_path(@movie), method: :get, class: 'btn btn-secondary d-inline-block' %>
+					<%= form_for(@movie, url: movie_path(@movie), method: :delete, class: 'd-inline-block') do |f| %>
+						<%= f.submit 'Apagar', class: 'btn btn-danger' %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

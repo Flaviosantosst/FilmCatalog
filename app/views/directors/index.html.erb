@@ -1,0 +1,18 @@
+<div class="container">
+      <div class="page-header" id="banner">
+        <div class="row">
+          <div class="col-lg-8 col-md-7 col-sm-6">
+          </br>
+          </br>
+          </br>
+		  	<h1>Diretores</h1>
+          </div>
+        </div>
+      </div>
+</div>
+<%= button_to "Voltar", root_path, method: :get, class: "btn btn-secondary" %>
+
+<% @directors.each do |director| %>
+	<%= link_to director.name, director %>
+	<br/>
+<% end %>

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'home#index'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :movies, only: [:index, :show, :new, :create, :edit, :update] do
+    patch :publish, on: :member
+    patch :unpublish, on: :member
+    delete :destroy, on: :member
+  end
+  resources :directors, only: [:index, :show, :new, :create, :edit, :update]
+  resources :genres, only: [:index, :show, :new, :create, :edit, :update]
 end
